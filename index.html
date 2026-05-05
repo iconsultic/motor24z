@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor24Z | Novedades, Tecnología y Competición</title>
+    <meta name="description" content="Motor24Z: Innovación, industria y competición. Una nueva forma de entender el mundo del motor.">
+    
+    <style>
+        /* --- VARIABLES SEGÚN GUÍA DE DISEÑO --- */
+        :root {
+            --primary: #e60000; /* Racing Red */
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --card-bg: #f9f9f9;
+            --border-light: #eeeeee;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container { width: 90%; max-width: 1200px; margin: auto; padding: 80px 0; }
+
+        /* --- NAVBAR (STICKY) --- */
+        .navbar {
+            position: sticky; top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; z-index: 1000; 
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo-img { height: 40px; width: auto; object-fit: contain; }
+
+        /* --- HERO SECTION (ROTACIÓN TRIPLE) --- */
+        .hero {
+            height: 85vh;
+            background-size: cover;
+            background-position: center;
+            display: flex; align-items: center; text-align: center;
+            transition: background-image 1s ease-in-out;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Capa de legibilidad */
+        .hero::before {
+            content: "";
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+
+        .hero-content { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+
+        .rotator-wrapper { height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            line-height: 1;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero p { font-size: 1.2rem; max-width: 750px; margin: 0 auto; opacity: 0.95; font-weight: 400; }
+        
+        .fade-out { opacity: 0; }
+
+        /* --- BOTONES --- */
+        .btn-cta { 
+            background: var(--primary); color: white; text-decoration: none; 
+            font-weight: bold; border-radius: 4px; padding: 12px 28px;
+            font-size: 0.9rem; text-transform: uppercase; transition: 0.3s;
+            display: inline-block; border: none; cursor: pointer;
+        }
+        .btn-cta:hover { background: #ff1a1a; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(230, 0, 0, 0.3); }
+
+        /* --- SECCIÓN QUÉ ES (CON PATRÓN DE FONDO) --- */
+        .about { 
+            background-color: var(--bg-white);
+            background-image: url('img/patro-fons.webp'); /* Aplicado según especificación */
+            background-repeat: repeat;
+            background-position: center;
+        }
+
+        .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        
+        .about h2 { font-size: 2.2rem; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; position: relative; }
+        .about h2::after { content: ""; display: block; width: 50px; height: 4px; background: var(--primary); margin-top: 10px; }
+        
+        .about p { margin-bottom: 15px; font-size: 1.1rem; color: #444; }
+        .brand-slogan { font-size: 1.8rem; color: var(--primary); font-weight: 900; margin-top: 30px; text-transform: uppercase; }
+
+        .about-image img { 
+            width: 100%; border-radius: 8px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            display: block;
+        }
+
+        /* --- SECCIÓN CANALES (HUB) --- */
+        .channels { background: var(--bg-white); border-top: 1px solid var(--border-light); }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; font-weight: 900; text-transform: uppercase; }
+        
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        
+        .card {
+            background: var(--card-bg); padding: 40px 30px; border-radius: 12px;
+            text-decoration: none; color: var(--text-dark); border: 1px solid var(--border-light);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        
+        .card:hover { 
+            border-color: var(--primary); background: #ffffff; 
+            transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); 
+        }
+
+        .card-icon { width: 55px; height: 55px; margin-bottom: 20px; }
+        .card-icon svg { width: 100%; height: 100%; fill: #888888; transition: 0.3s; }
+        .card:hover .card-icon svg { fill: var(--primary); }
+
+        .card h3 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 900; }
+        .card p { font-size: 0.95rem; opacity: 0.8; margin-bottom: 25px; flex-grow: 1; }
+        
+        .btn-sm { 
+            width: 100%; padding: 12px; background: var(--primary); color: white; 
+            font-weight: bold; text-transform: uppercase; font-size: 0.8rem; border-radius: 4px;
+        }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contact { background: var(--card-bg); border-top: 1px solid var(--border-light); text-align: center; }
+        .contact a { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+        .contact a:hover { text-decoration: underline; }
+
+        /* --- FOOTER ACTUALIZADO --- */
+        footer { 
+            background: var(--bg-white); 
+            border-top: 1px solid var(--border-light); 
+            padding: 60px 0 30px; 
+            text-align: center; 
+        }
+        
+        .footer-logo { height: 50px; width: auto; margin-bottom: 20px; }
+        
+        .footer-slogan { 
+            max-width: 600px; 
+            margin: 0 auto 30px; 
+            font-style: italic; 
+            color: #666; 
+            font-size: 1.1rem;
+        }
+        
+        .footer-links { 
+            margin-bottom: 30px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a { 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        
+        .footer-links a:hover { color: var(--primary); }
+        
+        .footer-copy { font-size: 0.75rem; opacity: 0.5; margin-top: 20px; }
+
+        /* --- RESPONSIVE (MOBILE FIRST) --- */
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about h2::after { margin: 10px auto 0; }
+            .about-image { order: -1; }
+            .hero h1 { font-size: 2.2rem; }
+            .rotator-wrapper { height: 100px; }
+            .navbar { padding: 10px 5%; }
+            .logo-img { height: 35px; }
+            .footer-links { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#"><img src="img/LogoHoritzontal.png" alt="Motor24Z Logo" class="logo-img"></a>
+        <a href="#canales" class="btn-cta">SÍGUENOS</a>
+    </header>
+
+    <main>
+        <section id="hero-banner" class="hero">
+            <div class="hero-content">
+                <div class="rotator-wrapper">
+                    <h1 id="rotating-text">NOVEDADES DEL MERCADO</h1>
+                </div>
+                <p>Un canal dedicado a explicar la innovación, la industria y la competición de cuatro ruedas que están transformando el presente y el futuro del mundo del motor.</p>
+            </div>
+        </section>
+
+        <section id="que-es" class="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>QUÉ ES MOTOR24Z</h2>
+                        <p><strong>Motor24Z es una nueva manera de llevarte toda la información del mundo del motor de una manera diferente.</strong></p>
+                        <p>Moderna, directa, contrastada y rápida. Un canal dedicado al mundo del motor que explora la actualidad del automóvil, la tecnología y la competición.</p>
+                        <p>Llegamos a ti como a ti te gusta.</p>
+                        <p>En Motor24Z encontrarás los contenidos que buscas para estar bien informado de las últimas novedades a través de nuestros canales y redes sociales.</p>
+                        <p class="brand-slogan">Motor24Z eres tú.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/toyota_bz4x.webp" alt="Esquema tecnológico Toyota bZ4X">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="canales" class="channels">
+            <div class="container">
+                <h2 class="section-title">NUESTROS CANALES</h2>
+                <div class="social-grid">
+                    <a href="https://www.youtube.com/@Motor24Z" target="_blank" class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </div>
+                        <h3>YOUTUBE</h3>
+                        <p>Programas de información, análisis, novedades y grandes directos.</p>
+                        <span class="btn-sm">Suscribirse</span>
+                    </a>
+                    <a href="https://www.instagram.com/motor24z/" target="_blank" class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                        </div>
+                        <h3>INSTAGRAM</h3>
+                        <p>Imágenes exclusivas y noticias rápidas de la actualidad del motor.</p>
+                        <span class="btn-sm">Seguir</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@motor24z" target="_blank" class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.536 0H16.82v4.208c0 1.583 1.277 2.87 2.85 2.87V11.37a7.07 7.07 0 0 1-5.07-2.126V16.63a7.07 7.07 0 1 1-7.07-7.071c.21 0 .415.013.618.036v4.25c-.2-.02-.4-.036-.618-.036a2.822 2.822 0 0 0-.001 5.644c1.55 0 2.812-1.262 2.812-2.812V0z"/></svg>
+                        </div>
+                        <h3>TIKTOK</h3>
+                        <p>Vídeos cortos con lo más impactante del mundo de la competición.</p>
+                        <span class="btn-sm">Seguir</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18B36RaBvm/" target="_blank" class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </div>
+                        <h3>FACEBOOK</h3>
+                        <p>Únete a nuestra comunidad y comparte tu pasión con nosotros.</p>
+                        <span class="btn-sm">Unirse</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact">
+            <div class="container">
+                <h2 class="section-title">CONTACTO</h2>
+                <p>¿Tienes alguna propuesta o consulta? Escríbenos directamente a:</p>
+                <p style="margin-top: 20px;"><a href="mailto:info@motor24z.com">info@motor24z.com</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" style="padding: 0;">
+            <img src="img/LogoHoritzontal.png" alt="Motor24Z Logo" class="footer-logo">
+            <p class="footer-slogan">"El contenido más dinámico de coches, tecnología y competición en el formato que tu decidas."</p>
+            
+            <div class="footer-links">
+                <a href="aviso-legal.html">Aviso legal</a>
+                <a href="politica-privacidad.html">Política de privacidad</a>
+                <a href="politica-cookies.html">Política de cookies</a>
+            </div>
+            
+            <p class="footer-copy">&copy; 2026 Motor24Z. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- LÓGICA DE ROTACIÓN SEGÚN ESPECIFICACIONES ---
+        const slides = [
+            { text: "NOVEDADES DEL MERCADO", img: "img/Motor24Z-Web2.webp" }, // Slide 1: BMW
+            { text: "TECNOLOGÍA, ACTUALIDAD Y COMPETICIÓN", img: "img/Motor24Z-Web3.webp" }, // Slide 2: Eléctricos
+            { text: "UNA NUEVA MANERA DE LLEGAR A TI", img: "img/Motor24Z-Web1.webp" } // Slide 3: Cupra/F1
+        ];
+
+        let currentIndex = 0;
+        const textElement = document.getElementById('rotating-text');
+        const heroElement = document.getElementById('hero-banner');
+
+        // Inicialización
+        heroElement.style.backgroundImage = `url('${slides[0].img}')`;
+
+        function rotate() {
+            // Animación de salida (fade)
+            textElement.classList.add('fade-out');
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                
+                // Cambio de contenido
+                textElement.innerText = slides[currentIndex].text;
+                heroElement.style.backgroundImage = `url('${slides[currentIndex].img}')`;
+                
+                // Animación de entrada
+                textElement.classList.remove('fade-out');
+            }, 500); // Sincronizado con la transición CSS
+        }
+
+        // Rotación cada 4 segundos
+        setInterval(rotate, 4000);
+    </script>
+</body>
+</html>
