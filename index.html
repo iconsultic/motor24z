@@ -90,7 +90,7 @@
         /* --- SECCIÓN QUÉ ES (CON PATRÓN DE FONDO) --- */
         .about { 
             background-color: var(--bg-white);
-            background-image: url('img/patro-fons.png');
+            background-image: url('img/patro-fons.webp'); /* Canviat a minúscules i .webp segons captura */
             background-repeat: repeat;
             background-position: center;
         }
@@ -139,7 +139,7 @@
             font-weight: bold; text-transform: uppercase; font-size: 0.8rem; border-radius: 4px;
         }
 
-        /* --- FOOTER (CORREGIDO - SIN ENLACES LEGALES) --- */
+        /* --- FOOTER --- */
         footer { background: var(--card-bg); border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; }
         footer p { max-width: 700px; margin: auto; font-size: 0.95rem; opacity: 0.7; line-height: 1.8; }
 
@@ -158,8 +158,7 @@
 <body>
 
     <header class="navbar">
-        <a href="#"><img src="img/LogoHoritzontal.png" alt="Motor24Z Logo" class="logo-img"></a>
-        <a href="#canales" class="btn-cta">SÍGUENOS</a>
+        <a href="#"><img src="img/logo_horitzontal.png" alt="Motor24Z Logo" class="logo-img"></a> <a href="#canales" class="btn-cta">SÍGUENOS</a>
     </header>
 
     <main>
@@ -184,8 +183,7 @@
                         <p class="brand-slogan">Motor24Z eres tú.</p>
                     </div>
                     <div class="about-image">
-                        <img src="img/toyota_bz4x_det_ns_102921_717.jpeg" alt="Esquema tecnológico Toyota bZ4X">
-                    </div>
+                        <img src="img/toyota_bz4x.webp" alt="Esquema tecnológico Toyota bZ4X"> </div>
                 </div>
             </div>
         </section>
@@ -239,11 +237,11 @@
     </footer>
 
     <script>
-        // --- LÓGICA DE ROTACIÓN SEGÚN ESPECIFICACIONES ---
+        // --- LÓGICA DE ROTACIÓN CORREGIDA CON LOS NOMBRES EXACTOS DE TU CAPTURA ---
         const slides = [
-            { text: "NOVEDADES DEL MERCADO", img: "img/Motor24Z-Web2.webp" }, // Slide 1: BMW
-            { text: "TECNOLOGÍA, ACTUALIDAD Y COMPETICIÓN", img: "img/Motor24Z-Web3.webp" }, // Slide 2: Eléctricos
-            { text: "UNA NUEVA MANERA DE LLEGAR A TI", img: "img/Motor24Z-Web1.webp" } // Slide 3: Cupra/F1
+            { text: "NOVEDADES DEL MERCADO", img: "img/motor24z_web2.webp" }, // Slide 1 (Guió baix i minúscules)
+            { text: "TECNOLOGÍA, ACTUALIDAD Y COMPETICIÓN", img: "img/motor24z_web3.webp" }, // Slide 2
+            { text: "UNA NUEVA MANERA DE LLEGAR A TI", img: "img/motor24z_web1.webp" } // Slide 3
         ];
 
         let currentIndex = 0;
@@ -254,22 +252,18 @@
         heroElement.style.backgroundImage = `url('${slides[0].img}')`;
 
         function rotate() {
-            // Animación de salida (fade)
             textElement.classList.add('fade-out');
 
             setTimeout(() => {
                 currentIndex = (currentIndex + 1) % slides.length;
                 
-                // Cambio de contenido
                 textElement.innerText = slides[currentIndex].text;
                 heroElement.style.backgroundImage = `url('${slides[currentIndex].img}')`;
                 
-                // Animación de entrada
                 textElement.classList.remove('fade-out');
-            }, 500); // Sincronizado con la transición CSS
+            }, 500);
         }
 
-        // Rotación cada 4 segundos
         setInterval(rotate, 4000);
     </script>
 </body>
