@@ -90,7 +90,7 @@
         /* --- SECCIÓN QUÉ ES (CON PATRÓN DE FONDO) --- */
         .about { 
             background-color: var(--bg-white);
-            background-image: url('img/patro-fons.webp'); /* Aplicado según especificación */
+            background-image: url('img/patro-fons.png');
             background-repeat: repeat;
             background-position: center;
         }
@@ -139,49 +139,9 @@
             font-weight: bold; text-transform: uppercase; font-size: 0.8rem; border-radius: 4px;
         }
 
-        /* --- SECCIÓN CONTACTO --- */
-        .contact { background: var(--card-bg); border-top: 1px solid var(--border-light); text-align: center; }
-        .contact a { color: var(--primary); text-decoration: none; font-weight: bold; font-size: 1.2rem; }
-        .contact a:hover { text-decoration: underline; }
-
-        /* --- FOOTER ACTUALIZADO --- */
-        footer { 
-            background: var(--bg-white); 
-            border-top: 1px solid var(--border-light); 
-            padding: 60px 0 30px; 
-            text-align: center; 
-        }
-        
-        .footer-logo { height: 50px; width: auto; margin-bottom: 20px; }
-        
-        .footer-slogan { 
-            max-width: 600px; 
-            margin: 0 auto 30px; 
-            font-style: italic; 
-            color: #666; 
-            font-size: 1.1rem;
-        }
-        
-        .footer-links { 
-            margin-bottom: 30px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a { 
-            color: var(--text-dark); 
-            text-decoration: none; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        
-        .footer-links a:hover { color: var(--primary); }
-        
-        .footer-copy { font-size: 0.75rem; opacity: 0.5; margin-top: 20px; }
+        /* --- FOOTER (CORREGIDO - SIN ENLACES LEGALES) --- */
+        footer { background: var(--card-bg); border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; }
+        footer p { max-width: 700px; margin: auto; font-size: 0.95rem; opacity: 0.7; line-height: 1.8; }
 
         /* --- RESPONSIVE (MOBILE FIRST) --- */
         @media (max-width: 900px) {
@@ -192,7 +152,6 @@
             .rotator-wrapper { height: 100px; }
             .navbar { padding: 10px 5%; }
             .logo-img { height: 35px; }
-            .footer-links { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -225,7 +184,7 @@
                         <p class="brand-slogan">Motor24Z eres tú.</p>
                     </div>
                     <div class="about-image">
-                        <img src="img/toyota_bz4x.webp" alt="Esquema tecnológico Toyota bZ4X">
+                        <img src="img/toyota_bz4x_det_ns_102921_717.jpeg" alt="Esquema tecnológico Toyota bZ4X">
                     </div>
                 </div>
             </div>
@@ -270,28 +229,12 @@
                 </div>
             </div>
         </section>
-
-        <section id="contacto" class="contact">
-            <div class="container">
-                <h2 class="section-title">CONTACTO</h2>
-                <p>¿Tienes alguna propuesta o consulta? Escríbenos directamente a:</p>
-                <p style="margin-top: 20px;"><a href="mailto:info@motor24z.com">info@motor24z.com</a></p>
-            </div>
-        </section>
     </main>
 
     <footer>
-        <div class="container" style="padding: 0;">
-            <img src="img/LogoHoritzontal.png" alt="Motor24Z Logo" class="footer-logo">
-            <p class="footer-slogan">"El contenido más dinámico de coches, tecnología y competición en el formato que tu decidas."</p>
-            
-            <div class="footer-links">
-                <a href="aviso-legal.html">Aviso legal</a>
-                <a href="politica-privacidad.html">Política de privacidad</a>
-                <a href="politica-cookies.html">Política de cookies</a>
-            </div>
-            
-            <p class="footer-copy">&copy; 2026 Motor24Z. Todos los derechos reservados.</p>
+        <div class="container">
+            <p><strong>Nuestro enfoque:</strong> Una nueva manera de llevarte toda la información: coches, tecnología y competición en un formato moderno que define a una nueva generación.</p>
+            <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Motor24Z. Todos los derechos reservados.</p>
         </div>
     </footer>
 
